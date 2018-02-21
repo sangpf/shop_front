@@ -40,10 +40,6 @@ public class Sku implements Serializable {
 	private Color color;
 	//放一个商品对象
 	private Product product;
-	
-	
-	
-	
 
 	public Product getProduct() {
 		return product;

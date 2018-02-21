@@ -18,7 +18,7 @@
 			<if test="fields == null">
 			id,name,parent_id,note,is_display
 			</if>
-		FROM bbs_type
+		FROM type
 	</sql>
 	<sql id="typeListWhere">
 		<where>
@@ -67,12 +67,12 @@
 
 	<!-- 根据主键查询 -->
 	<select id="getTypeByKey" resultMap="type" parameterType="hashMap">
-		SELECT id,name,parent_id,note,is_display FROM bbs_type
+		SELECT id,name,parent_id,note,is_display FROM type
 		WHERE
 		id=#{id}
 	</select>
 	<select id="getTypesByKeys" resultMap="type" parameterType="ArrayList">
-		SELECT id,name,parent_id,note,is_display FROM bbs_type
+		SELECT id,name,parent_id,note,is_display FROM type
 		WHERE
 		id in
 		<foreach collection="list" separator="," item="id" open="(" close=")">
@@ -82,14 +82,14 @@
 
 	<!-- 根据主键删除 -->
 	<delete id="deleteByKey" parameterType="hashMap">
-		DELETE FROM bbs_type
+		DELETE FROM type
 		WHERE
 		id=#{id}
 	</delete>
 
 	<!-- 根据主键批量删除 -->
 	<delete id="deleteByKeys">
-		DELETE FROM bbs_type
+		DELETE FROM type
 		WHERE
 		id in
 		<foreach collection="list" separator="," item="id" open="(" close=")">
@@ -99,7 +99,7 @@
 
 	<!-- 根据主键更新 -->
 	<update id="updateTypeByKey" parameterType="Type">
-		UPDATE bbs_type
+		UPDATE type
 		<set>
 			<trim suffixOverrides=",">
 				<if test="id != null">
@@ -131,7 +131,7 @@
 	</select>
 	<!-- 数据总数 -->
 	<select id="getTypeListCount" parameterType="TypeQuery" resultType="int">
-		SELECT count(1) FROM bbs_type
+		SELECT count(1) FROM type
 		<include refid="typeListWhere" />
 	</select>
 	<!-- 数据集合 -->
@@ -142,7 +142,7 @@
 	</select>
 	<!-- 添加 -->
 	<insert id="addType" parameterType="Type">
-		INSERT INTO bbs_type
+		INSERT INTO type
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 				<if test="id != null">
 					id,

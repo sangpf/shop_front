@@ -88,6 +88,7 @@ public class FrontProductController {
 		String jsonString = JSON.toJSONString(product);
 
 		try {
+			response.setContentType("application/json;charset=UTF-8");
 			response.getWriter().write(jsonString);
 		} catch (IOException e) {
 			e.printStackTrace();

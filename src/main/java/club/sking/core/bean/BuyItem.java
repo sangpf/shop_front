@@ -13,6 +13,7 @@ public class BuyItem {
 	private Sku sku;
 	//数量
 	private int amount =1;
+
 	public Sku getSku() {
 		return sku;
 	}
@@ -50,10 +51,5 @@ public class BuyItem {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
-	
+
 }

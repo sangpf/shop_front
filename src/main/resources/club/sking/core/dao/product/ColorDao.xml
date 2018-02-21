@@ -17,7 +17,7 @@
 			<if test="fields == null">
 			id,name,parent_id,img_url
 			</if>
-		FROM bbs_color
+		FROM color
 	</sql>
 	<sql id="colorListWhere">
 		<where>
@@ -63,12 +63,12 @@
 
 	<!-- 根据主键查询 -->
 	<select id="getColorByKey" resultMap="color" parameterType="hashMap">
-		SELECT id,name,parent_id,img_url FROM bbs_color
+		SELECT id,name,parent_id,img_url FROM color
 		WHERE
 		id=#{id}
 	</select>
 	<select id="getColorsByKeys" resultMap="color" parameterType="ArrayList">
-		SELECT id,name,parent_id,img_url FROM bbs_color
+		SELECT id,name,parent_id,img_url FROM color
 		WHERE
 		id in
 		<foreach collection="list" separator="," item="id" open="(" close=")">
@@ -78,14 +78,14 @@
 
 	<!-- 根据主键删除 -->
 	<delete id="deleteByKey" parameterType="hashMap">
-		DELETE FROM bbs_color
+		DELETE FROM color
 		WHERE
 		id=#{id}
 	</delete>
 
 	<!-- 根据主键批量删除 -->
 	<delete id="deleteByKeys">
-		DELETE FROM bbs_color
+		DELETE FROM color
 		WHERE
 		id in
 		<foreach collection="list" separator="," item="id" open="(" close=")">
@@ -95,7 +95,7 @@
 
 	<!-- 根据主键更新 -->
 	<update id="updateColorByKey" parameterType="Color">
-		UPDATE bbs_color
+		UPDATE color
 		<set>
 			<trim suffixOverrides=",">
 				<if test="id != null">
@@ -124,7 +124,7 @@
 	</select>
 	<!-- 数据总数 -->
 	<select id="getColorListCount" parameterType="ColorQuery" resultType="int">
-		SELECT count(1) FROM bbs_color
+		SELECT count(1) FROM color
 		<include refid="colorListWhere" />
 	</select>
 	<!-- 数据集合 -->
@@ -135,7 +135,7 @@
 	</select>
 	<!-- 添加 -->
 	<insert id="addColor" parameterType="Color">
-		INSERT INTO bbs_color
+		INSERT INTO color
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 				<if test="id != null">
 					id,

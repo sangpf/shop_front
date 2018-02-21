@@ -22,7 +22,7 @@
 		<if test="fields == null">
 			id , name ,description,img_url,sort,is_display
 		</if>
-		from bbs_brand
+		from brand
 	</sql>
 	<!-- 品牌条件 -->
 	<sql id="brandWhere">
@@ -70,7 +70,7 @@
 	<!-- 查询品牌   get*   -->
 	<select id="getBrandListWithPage" parameterType="Brand" resultMap="brand">
 		select id , name ,description,img_url,sort,is_display
-		from bbs_brand
+		from brand
 		<where>
 			<if test="isDisplay != null">
 				is_display = #{isDisplay}
@@ -86,7 +86,7 @@
 	<!-- 查询总记录数 -->
 	<select id="getBrandCount" parameterType="Brand" resultType="Integer">
 		select count(1)
-		from bbs_brand
+		from brand
 		<where>
 			<if test="isDisplay != null">
 				is_display = #{isDisplay}
@@ -98,7 +98,7 @@
 	</select>
 	<!-- 添加品牌 -->
 	<insert id="addBrand" parameterType="Brand">
-		insert into bbs_brand
+		insert into brand
 		<trim prefix="(" suffix=")">
 			name ,
 			description,
@@ -117,14 +117,14 @@
 	</insert>
 	<!-- 删除 通过主键 -->
 	<delete id="deleteBrandByKey" parameterType="Integer">
-		delete from bbs_brand
+		delete from brand
 		<where>
 			id = #{id}
 		</where>
 	</delete>
 	<!-- 批量删除 -->
 	<delete id="deleteBrandByKeys" parameterType="Integer">
-		delete from bbs_brand
+		delete from brand
 		<where>
 			id in 
 			<foreach collection="array" item="id" open="(" close=")" separator="," >
@@ -134,7 +134,7 @@
 	</delete>
 	<!-- 修改 -->
 	<update id="updateBrandByKey" parameterType="Brand">
-		update bbs_brand
+		update brand
 		<set>
 			<if test="name != null">
 				name=#{name},
@@ -159,7 +159,7 @@
 	<!-- 通过ID查询一个品牌对象 -->
 	<select id="getBrandByKey" parameterType="Integer" resultMap="brand">
 		select id , name ,description,img_url,sort,is_display
-		from bbs_brand
+		from brand
 		<where>
 			id = #{id}
 		</where>

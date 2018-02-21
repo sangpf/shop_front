@@ -17,7 +17,7 @@
 			<if test="fields == null">
 			id,code,name,province
 			</if>
-		FROM bbs_city
+		FROM city
 	</sql>
 	<sql id="cityListWhere">
 		<where>
@@ -68,12 +68,12 @@
 
 	<!-- 根据主键查询 -->
 	<select id="getCityByKey" resultMap="city" parameterType="hashMap">
-		SELECT id,code,name,province FROM bbs_city
+		SELECT id,code,name,province FROM city
 		WHERE
 		id=#{id}
 	</select>
 	<select id="getCitysByKeys" resultMap="city" parameterType="ArrayList">
-		SELECT id,code,name,province FROM bbs_city
+		SELECT id,code,name,province FROM city
 		WHERE
 		id in
 		<foreach collection="list" separator="," item="id" open="(" close=")">
@@ -83,14 +83,14 @@
 
 	<!-- 根据主键删除 -->
 	<delete id="deleteByKey" parameterType="hashMap">
-		DELETE FROM bbs_city
+		DELETE FROM city
 		WHERE
 		id=#{id}
 	</delete>
 
 	<!-- 根据主键批量删除 -->
 	<delete id="deleteByKeys">
-		DELETE FROM bbs_city
+		DELETE FROM city
 		WHERE
 		id in
 		<foreach collection="list" separator="," item="id" open="(" close=")">
@@ -100,7 +100,7 @@
 
 	<!-- 根据主键更新 -->
 	<update id="updateCityByKey" parameterType="City">
-		UPDATE bbs_city
+		UPDATE city
 		<set>
 			<trim suffixOverrides=",">
 				<if test="id != null">
@@ -129,7 +129,7 @@
 	</select>
 	<!-- 数据总数 -->
 	<select id="getCityListCount" parameterType="CityQuery" resultType="int">
-		SELECT count(1) FROM bbs_city
+		SELECT count(1) FROM city
 		<include refid="cityListWhere" />
 	</select>
 	<!-- 数据集合 -->
@@ -140,7 +140,7 @@
 	</select>
 	<!-- 添加 -->
 	<insert id="addCity" parameterType="City">
-		INSERT INTO bbs_city
+		INSERT INTO city
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 				<if test="id != null">
 					id,

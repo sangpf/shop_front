@@ -27,7 +27,7 @@
 			<if test="fields == null">
 			id,oid,deliver_fee,payable_fee,total_price,payment_way,payment_cash,delivery,isConfirm,is_paiy,state,create_date,note,buyer_id
 			</if>
-		FROM bbs_order
+		FROM order
 	</sql>
 	<sql id="orderListWhere">
 		<where>
@@ -108,12 +108,12 @@
 
 	<!-- 根据主键查询 -->
 	<select id="getOrderByKey" resultMap="order" parameterType="hashMap">
-		SELECT id,oid,deliver_fee,payable_fee,total_price,payment_way,payment_cash,delivery,isConfirm,is_paiy,state,create_date,note,buyer_id FROM bbs_order
+		SELECT id,oid,deliver_fee,payable_fee,total_price,payment_way,payment_cash,delivery,isConfirm,is_paiy,state,create_date,note,buyer_id FROM order
 		WHERE
 		id=#{id}
 	</select>
 	<select id="getOrdersByKeys" resultMap="order" parameterType="ArrayList">
-		SELECT id,oid,deliver_fee,payable_fee,total_price,payment_way,payment_cash,delivery,isConfirm,is_paiy,state,create_date,note,buyer_id FROM bbs_order
+		SELECT id,oid,deliver_fee,payable_fee,total_price,payment_way,payment_cash,delivery,isConfirm,is_paiy,state,create_date,note,buyer_id FROM order
 		WHERE
 		id in
 		<foreach collection="list" separator="," item="id" open="(" close=")">
@@ -123,14 +123,14 @@
 
 	<!-- 根据主键删除 -->
 	<delete id="deleteByKey" parameterType="hashMap">
-		DELETE FROM bbs_order
+		DELETE FROM order
 		WHERE
 		id=#{id}
 	</delete>
 
 	<!-- 根据主键批量删除 -->
 	<delete id="deleteByKeys">
-		DELETE FROM bbs_order
+		DELETE FROM order
 		WHERE
 		id in
 		<foreach collection="list" separator="," item="id" open="(" close=")">
@@ -140,7 +140,7 @@
 
 	<!-- 根据主键更新 -->
 	<update id="updateOrderByKey" parameterType="Order">
-		UPDATE bbs_order
+		UPDATE order
 		<set>
 			<trim suffixOverrides=",">
 				<if test="id != null">
@@ -199,7 +199,7 @@
 	</select>
 	<!-- 数据总数 -->
 	<select id="getOrderListCount" parameterType="OrderQuery" resultType="int">
-		SELECT count(1) FROM bbs_order
+		SELECT count(1) FROM order
 		<include refid="orderListWhere" />
 	</select>
 	<!-- 数据集合 -->
@@ -213,7 +213,7 @@
 		<selectKey order="AFTER" resultType="Integer" keyProperty="id">
 			select LAST_INSERT_ID()
 		</selectKey>
-		INSERT INTO bbs_order
+		INSERT INTO order
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 				<if test="id != null">
 					id,

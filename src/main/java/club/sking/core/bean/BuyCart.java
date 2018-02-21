@@ -13,12 +13,10 @@ import java.util.List;
 public class BuyCart {
 
 	//购物项  集合
-	
 	List<BuyItem> items = new ArrayList<BuyItem>();
 	//继续购物   最后一款
 	private Integer productId;
-	
-	
+
 	//添加方法
 	public void addItem(BuyItem item){
 		//判断是否重复
@@ -40,10 +38,12 @@ public class BuyCart {
 			items.add(item);
 		}
 	}
+
 	//删除一个
 	public void deleteItem(BuyItem item){
 		items.remove(item);
 	}
+
 	//小计
 	//商品数量
 	@JsonIgnore
@@ -54,6 +54,7 @@ public class BuyCart {
 		}
 		return result;
 	}
+
 	//商品金额
 	@JsonIgnore
 	public Double getProductPrice(){
@@ -63,6 +64,7 @@ public class BuyCart {
 		}
 		return result;
 	}
+
 	//运费
 	@JsonIgnore
 	public Double getFee(){
@@ -77,6 +79,7 @@ public class BuyCart {
 	public void clearCart(){
 		items.clear();
 	}
+
 	//应付金额
 	@JsonIgnore
 	public Double getTotalPrice(){
@@ -98,12 +101,7 @@ public class BuyCart {
 	public void setProductId(Integer productId) {
 		this.productId = productId;
 	}
-	
-	
+
 	//小计
-	
-	
-	
-	
-	
+
 }

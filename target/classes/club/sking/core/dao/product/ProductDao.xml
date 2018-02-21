@@ -35,7 +35,7 @@
 			<if test="fields == null">
 			id,no,name,weight,is_new,is_hot,is_commend,create_time,create_user_id,check_time,check_user_id,is_show,is_del,type_id,brand_id,keywords,sales,description,package_list,feature,color,size
 			</if>
-		FROM bbs_product
+		FROM product
 	</sql>
 	<sql id="productListWhere">
 		<where>
@@ -175,12 +175,12 @@
 
 	<!-- 根据主键查询 -->
 	<select id="getProductByKey" resultMap="product" parameterType="hashMap">
-		SELECT id,no,name,weight,is_new,is_hot,is_commend,create_time,create_user_id,check_time,check_user_id,is_show,is_del,type_id,brand_id,keywords,sales,description,package_list,feature,color,size FROM bbs_product
+		SELECT id,no,name,weight,is_new,is_hot,is_commend,create_time,create_user_id,check_time,check_user_id,is_show,is_del,type_id,brand_id,keywords,sales,description,package_list,feature,color,size FROM product
 		WHERE
 		id=#{id}
 	</select>
 	<select id="getProductsByKeys" resultMap="product" parameterType="ArrayList">
-		SELECT id,no,name,weight,is_new,is_hot,is_commend,create_time,create_user_id,check_time,check_user_id,is_show,is_del,type_id,brand_id,keywords,sales,description,package_list,feature,color,size FROM bbs_product
+		SELECT id,no,name,weight,is_new,is_hot,is_commend,create_time,create_user_id,check_time,check_user_id,is_show,is_del,type_id,brand_id,keywords,sales,description,package_list,feature,color,size FROM product
 		WHERE
 		id in
 		<foreach collection="list" separator="," item="id" open="(" close=")">
@@ -190,14 +190,14 @@
 
 	<!-- 根据主键删除 -->
 	<delete id="deleteByKey" parameterType="hashMap">
-		DELETE FROM bbs_product
+		DELETE FROM product
 		WHERE
 		id=#{id}
 	</delete>
 
 	<!-- 根据主键批量删除 -->
 	<delete id="deleteByKeys">
-		DELETE FROM bbs_product
+		DELETE FROM product
 		WHERE
 		id in
 		<foreach collection="list" separator="," item="id" open="(" close=")">
@@ -207,7 +207,7 @@
 
 	<!-- 根据主键更新 -->
 	<update id="updateProductByKey" parameterType="Product">
-		UPDATE bbs_product
+		UPDATE product
 		<set>
 			<trim suffixOverrides=",">
 				<if test="id != null">
@@ -290,7 +290,7 @@
 	</select>
 	<!-- 数据总数 -->
 	<select id="getProductListCount" parameterType="ProductQuery" resultType="int">
-		SELECT count(1) FROM bbs_product
+		SELECT count(1) FROM product
 		<include refid="productListWhere" />
 	</select>
 	<!-- 数据集合 -->
@@ -301,7 +301,7 @@
 	</select>
 	<!-- 添加 -->
 	<insert id="addProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO bbs_product
+		INSERT INTO product
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 				<if test="id != null">
 					id,

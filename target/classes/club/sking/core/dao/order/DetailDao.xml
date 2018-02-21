@@ -21,7 +21,7 @@
 			<if test="fields == null">
 			id,order_id,product_no,product_name,color,size,sku_price,amount
 			</if>
-		FROM bbs_detail
+		FROM detail
 	</sql>
 	<sql id="detailListWhere">
 		<where>
@@ -89,12 +89,12 @@
 
 	<!-- 根据主键查询 -->
 	<select id="getDetailByKey" resultMap="detail" parameterType="hashMap">
-		SELECT id,order_id,product_no,product_name,color,size,sku_price,amount FROM bbs_detail
+		SELECT id,order_id,product_no,product_name,color,size,sku_price,amount FROM detail
 		WHERE
 		id=#{id}
 	</select>
 	<select id="getDetailsByKeys" resultMap="detail" parameterType="ArrayList">
-		SELECT id,order_id,product_no,product_name,color,size,sku_price,amount FROM bbs_detail
+		SELECT id,order_id,product_no,product_name,color,size,sku_price,amount FROM detail
 		WHERE
 		id in
 		<foreach collection="list" separator="," item="id" open="(" close=")">
@@ -104,14 +104,14 @@
 
 	<!-- 根据主键删除 -->
 	<delete id="deleteByKey" parameterType="hashMap">
-		DELETE FROM bbs_detail
+		DELETE FROM detail
 		WHERE
 		id=#{id}
 	</delete>
 
 	<!-- 根据主键批量删除 -->
 	<delete id="deleteByKeys">
-		DELETE FROM bbs_detail
+		DELETE FROM detail
 		WHERE
 		id in
 		<foreach collection="list" separator="," item="id" open="(" close=")">
@@ -121,7 +121,7 @@
 
 	<!-- 根据主键更新 -->
 	<update id="updateDetailByKey" parameterType="Detail">
-		UPDATE bbs_detail
+		UPDATE detail
 		<set>
 			<trim suffixOverrides=",">
 				<if test="id != null">
@@ -162,7 +162,7 @@
 	</select>
 	<!-- 数据总数 -->
 	<select id="getDetailListCount" parameterType="DetailQuery" resultType="int">
-		SELECT count(1) FROM bbs_detail
+		SELECT count(1) FROM detail
 		<include refid="detailListWhere" />
 	</select>
 	<!-- 数据集合 -->
@@ -173,7 +173,7 @@
 	</select>
 	<!-- 添加 -->
 	<insert id="addDetail" parameterType="Detail">
-		INSERT INTO bbs_detail
+		INSERT INTO detail
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 				<if test="id != null">
 					id,

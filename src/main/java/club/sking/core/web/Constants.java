@@ -9,7 +9,8 @@ public interface Constants {
 	/**
 	 * 图片服务器
 	 */
-	public static final String IMAGE_URL = "http://localhost:8088/image-web/";
+//	public static final String IMAGE_URL = "http://localhost:8088/image-web/";
+	public static final String IMAGE_URL = "http://47.94.108.128:8088/img_service/";
 	/**
 	 * 用户Session
 	 */

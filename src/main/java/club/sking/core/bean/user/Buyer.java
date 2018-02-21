@@ -27,7 +27,6 @@ public class Buyer implements Serializable {
 	private Integer isDel;
 	
 	public enum Gender {
-
 		MAN{
 			public String getName(){return "男";}
 		},
